@@ -8,6 +8,7 @@ public class Head implements Wagon{
     @Override
     public String print() {
         return position == Position.START ? "<HHHH"
-                : position == Position.END ? "HHHH>" : "";
+                : position == Position.END ? "HHHH>"
+                : "";
     }
 }
