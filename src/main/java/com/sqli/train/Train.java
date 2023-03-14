@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Train {
 	List<Wagon> wagons=new ArrayList<>();
+	private WagonFactory wagonFactory = new WagonFactory();
 
 	public Train(String structure) {
 		/**
@@ -13,22 +14,7 @@ public class Train {
 		 for example : H => add new instance of Head class ...etc
 		 * */
 		for(int i=0;i<structure.length();i++){
-			switch(structure.charAt(i)){
-				case 'H': // head
-					if(i==0)
-						wagons.add(new Head(Position.START));
-					else
-						wagons.add(new Head(Position.END));
-					break;
-				case 'P': // Passenger
-					wagons.add(new Passenger());break;
-				case 'C': // Cargo
-					wagons.add(new Cargo());break;
-				case 'R': // Restaurant
-					wagons.add(new Restaurant());break;
-				default:
-					System.out.println("Type not supported");break;
-			}
+			wagons.add(wagonFactory.getWagon(structure.charAt(i),i));
 		}
 	}
 
